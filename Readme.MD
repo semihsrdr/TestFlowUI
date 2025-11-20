@@ -1,105 +1,158 @@
-🛠️ Recommended Tech Stack
+# TestFlow UI
 
-For a Junior Engineer, this stack strikes the perfect balance between "Industrial Standard" and "Ease of Use."
+A modern, beautiful test management dashboard built with React, TypeScript, and Ant Design. TestFlow provides an intuitive interface for managing test cases, creating test plans, and monitoring test executions.
 
-    Framework: React (Huge community support, standard for modern web apps).
+![TestFlow Dashboard](https://img.shields.io/badge/React-18.3-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue) ![Vite](https://img.shields.io/badge/Vite-6.0-purple) ![Ant Design](https://img.shields.io/badge/Ant%20Design-5.22-red)
 
-    Build Tool: Vite (Much faster and lighter than the old create-react-app).
+## ✨ Features
 
-    Language: TypeScript (Essential for "Type Safety" to prevent data/ID errors between backend and frontend).
+### 📚 Test Library
+- Create and manage test cases with Gherkin syntax
+- Monaco Editor integration for syntax highlighting
+- Tag-based organization and filtering
+- Search functionality
 
-    UI Library: Ant Design (AntD).
+### 📋 Test Plans
+- Build test plans using an intuitive Transfer component
+- Select multiple tests from your library
+- Environment-specific configurations (Dev, Staging, Production)
+- Edit existing plans with pre-filled data
+- **Split Layout**: Plan details on the left, test selection on the right
+- **Dynamic Counter**: Real-time count of selected tests
+- **Search & Filter**: Find tests quickly with built-in search
 
-        Why? It comes with pre-built "Enterprise" components like complex Tables, Breadcrumbs, Layouts, and Transfer Lists. It reduces CSS work by 90%.
+### 🎯 Dashboard
+- Overview statistics (Total Tests, Active Plans, Total Runs, Pass Rate)
+- Recent activity monitoring
+- Visual metrics and charts
 
-    Gherkin Editor: @monaco-editor/react.
+### 🚀 Test Execution
+- Run test plans with a single click
+- Live progress monitoring
+- Real-time log streaming
+- Status tracking (Running, Passed, Failed)
 
-        Why? This is the web version of VS Code. It supports syntax highlighting for Gherkin (coloring Given, When, Then).
+## 🎨 UI/UX Highlights
 
-    Data Fetching: TanStack Query (React Query) + Axios.
+- **Nord Dark Theme**: Professional, eye-friendly color palette
+- **Responsive Design**: Works seamlessly across different screen sizes
+- **Modern Components**: Circular action buttons, tooltips, and icons
+- **Color-Coded Environments**: Visual distinction for Production (red), Staging (orange), Dev (blue)
+- **Clean Layout**: Maximized content area with intuitive navigation
 
-        Why? Automatically handles "Loading" spinners, "Error" states, and data caching.
+## 🛠️ Tech Stack
 
-    Routing: React Router v6.
+- **Framework**: React 18.3
+- **Language**: TypeScript 5.6
+- **Build Tool**: Vite 6.0
+- **UI Library**: Ant Design 5.22
+- **State Management**: Zustand (with persistence)
+- **Routing**: React Router v6
+- **Code Editor**: Monaco Editor (VS Code engine)
+- **Styling**: CSS with Nord color palette
 
-    State Management: Zustand (Much simpler and lighter than Redux).
+## 📦 Installation
 
-🗺️ Step-by-Step Specific Roadmap
+```bash
+# Clone the repository
+git clone https://github.com/semihsrdr/TestFlowUI.git
 
-Step 1: Project Setup, Layout & Navigation
+# Navigate to the project directory
+cd TestFlowUI
 
-The goal is to build the skeleton. Even if pages are empty, navigation must work smoothly.
+# Install dependencies
+npm install
 
-    Setup: Initialize a React + TypeScript project using npm create vite@latest.
+# Start the development server
+npm run dev
+```
 
-    Layout Design: Use Ant Design's ProLayout or standard Layout component.
+The application will be available at `http://localhost:5173`
 
-        Sidebar: Menu items -> Dashboard, Test Library, Test Plans, Runs.
+## 🚀 Usage
 
-        Header: User info, Logout button.
+### Creating a Test
+1. Navigate to **Test Library**
+2. Click **Create Test**
+3. Enter test name and tags
+4. Write your test in Gherkin syntax using the Monaco Editor
+5. Save
 
-    📍 Breadcrumbs Integration:
+### Building a Test Plan
+1. Navigate to **Test Plans**
+2. Click **Create New Plan**
+3. Enter plan name and select environment
+4. Use the Transfer component to select tests
+5. Watch the counter update as you select tests
+6. Click **Create Plan**
 
-        Use the useLocation hook (from React Router) to dynamically generate the breadcrumb path based on the URL.
+### Running Tests
+1. Go to **Test Plans**
+2. Click the **Run** button (play icon) on any plan
+3. Monitor progress and view live logs
+4. Check results when execution completes
 
-        Example: If the user visits /plans/create, the top bar renders: Home / Plans / Create Plan.
+## 📁 Project Structure
 
-Step 2: Dashboard (Monitoring & Visualization)
+```
+src/
+├── components/
+│   └── MainLayout.tsx          # Main layout with sidebar and header
+├── pages/
+│   ├── Dashboard.tsx           # Overview and statistics
+│   ├── TestLibrary.tsx         # Test list and management
+│   ├── CreateTest.tsx          # Test creation/editing form
+│   ├── TestPlans.tsx           # Test plans list
+│   ├── CreatePlan.tsx          # Plan creation/editing form
+│   ├── Runs.tsx                # Execution history
+│   └── ExecuteRun.tsx          # Live execution monitoring
+├── store/
+│   ├── testStore.ts            # Test state management
+│   ├── planStore.ts            # Plan state management
+│   └── runStore.ts             # Run state management
+├── App.tsx                     # Route configuration
+└── main.tsx                    # Application entry point
+```
 
-The "Command Center" that greets the user.
+## 🔧 Configuration
 
-    Grid System: Use AntD Row and Col to divide the screen into 3 or 4 columns.
+The application uses Zustand with localStorage persistence. All data is stored locally in the browser:
+- `test-storage`: Test cases
+- `plan-storage`: Test plans
+- `run-storage`: Execution history
 
-    Cards: Use AntD Card and Statistic components.
+## 🎯 Key Features Implementation
 
-        Example: <Statistic title="Total Tests" value={120} prefix={<Icon />} />
+### Bug Fixes
+- **Test Count Fix**: Implemented unique ID validation to prevent duplicate test IDs in plans
+- **Tag Safety**: Added safeguards for undefined tags to prevent crashes
 
-    Activity List: A simple Table component showing "Recent Runs" (Use dummy JSON data until the backend is ready).
+### UI Improvements
+- Split-screen layout for better workflow
+- Enhanced Transfer component with search and tag display
+- Circular action buttons with tooltips
+- Dynamic test counter
+- Color-coded environment badges
 
-Step 3: Test Library & Monaco Editor
+## 🤝 Contributing
 
-The core feature for creating tests.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-    List View: Use the Table component. Columns: ID, Name, Tags, Actions (Edit/Delete).
+## 📝 License
 
-        Feature: Add an Input.Search above the table for filtering.
+This project is open source and available under the MIT License.
 
-    Create/Edit Page:
+## 👨‍💻 Author
 
-        Left Side: Inputs for Test Name and Tags (Use AntD Select with mode="tags").
+**Semih Sarıdere**
+- GitHub: [@semihsrdr](https://github.com/semihsrdr)
 
-        Right/Center: Embed <MonacoEditor language="gherkin" theme="vs-dark" />.
+## 🙏 Acknowledgments
 
-        As the user types in the editor, update the local state.
+- Built with [Ant Design](https://ant.design/)
+- Monaco Editor by [Microsoft](https://microsoft.github.io/monaco-editor/)
+- Inspired by modern test management tools
 
-Step 4: Test Plan Builder (The Transfer Module)
+---
 
-The logic for selecting tests and packaging them into a plan.
-
-    Component: Use the Ant Design Transfer component. This fits your requirement perfectly.
-
-        Left Box: Source (All available tests in Library).
-
-        Right Box: Target (Tests selected for this Plan).
-
-        Center: Automatic buttons to move items left/right.
-
-    Plan Settings: A simple form for "Plan Name" and "Environment" (e.g., Dev/Stage).
-
-Step 5: Execution & Live Monitoring
-
-Triggering the plan and watching it run.
-
-    Execution: A large "Run" button on the Plan Detail page. Clicking it sends a POST request to your API.
-
-    Polling (Live Status): Use React Query's refetchInterval feature.
-
-        Logic: "Check the status API every 3 seconds."
-
-    Visuals:
-
-        Status: Use AntD Badge (Status="processing" / "success").
-
-        Progress: Use AntD Progress bar (increases as tests finish).
-
-        Logs: A black-background div to display live logs streaming from the backend.
+**Note**: This is a frontend-only application. For full functionality, integrate with a backend API for test execution and data persistence.
